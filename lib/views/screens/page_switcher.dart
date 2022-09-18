@@ -12,22 +12,10 @@ class PageSwitcher extends StatefulWidget {
 }
 
 class _PageSwitcherState extends State<PageSwitcher> {
-  List<Widget> screens = [
-    Container(),
-    NewRecipesScreen(),
-    Container(),
-    Container(),
-    Container(),
-
-  ];
-  // int index=0;
-  // PageController pageController = PageController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: PageView(
-        children: screens,
-      ),
+      body: NewRecipesScreen(),
       bottomNavigationBar: BottomNavigationBar(
         items: [
           BottomNavigationBarItem(icon: Image.asset(cart,width: 35,color: Colors.grey,),label: ""),

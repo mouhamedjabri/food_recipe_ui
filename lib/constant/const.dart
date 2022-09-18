@@ -9,5 +9,5 @@ const String save = "assets/icon/bookmark.png";
 
 //assets
 const String shape = "assets/shape.png";
-const String recipeswan = "assets/Recipes1.png";
-const String recipestwo = "assets/Recipes2.png";
+const String recipeswan = "assets/Recipes1.jpg";
+const String recipestwo = "assets/Recipes2.jpg";
