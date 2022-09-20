@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../constant/const.dart';
+import '../../moudel/recip_moudel.dart';
 import '../widget/cosstom_app_bar.dart';
 import '../widget/recipie_item.dart';
 
@@ -34,16 +35,19 @@ class _NewRecipesScreenState extends State<NewRecipesScreen> {
               child: ListView(
                 padding: EdgeInsets.only(bottom: 20),
                 children:[
-                  RecipieItem(titel: "Garlicky Ginger Noodle Soup with Swiss Chard ",
+                  RecipieItem(titel: Recip.recipList[0].titel.toString(),
                   pageController: pageController,
-                  imgePath: recipeswan,
-                  review: "5.0",
-                  reviewStar: 5),
-                  RecipieItem(titel: "Ginger Miso Soba Soup ",
-                    pageController: pageControllertwo,
-                    imgePath: recipestwo,
-                    review: "4.5",
-                      reviewStar: 3),
+                  imgePath: Recip.recipList[0].imgPath,
+                  review: Recip.recipList[0].review,
+                  reviewStar: Recip.recipList[0].reviewNimber, index: 0,
+                  ),
+                  RecipieItem(titel: Recip.recipList[1].titel,
+                      pageController: pageControllertwo,
+                      imgePath: Recip.recipList[1].imgPath,
+                      review: Recip.recipList[1].review,
+                      reviewStar: Recip.recipList[1].reviewNimber,
+                    index: 1,),
+
                 ]
               ),
             ),

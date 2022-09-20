@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
+import '../../moudel/recip_moudel.dart';
 import '../screens/details_screen.dart';
 
 
 class RecipieItem extends StatefulWidget {
-  RecipieItem({Key? key,required this.titel,required this.review,required this.pageController,required this.imgePath,required this.reviewStar}) : super(key: key);
-  PageController? pageController;
-  String titel,review,imgePath;
-  int? reviewStar;
+  RecipieItem({Key? key,required this.titel,required this.review,required this.pageController,required this.imgePath,required this.reviewStar,required this.index}) : super(key: key);
+  PageController pageController;
+  String titel,review;
+  List<String> imgePath;
+  int reviewStar;
+  int index;
 
   @override
   State<RecipieItem> createState() => _RecipieItemState();
@@ -58,7 +61,7 @@ class _RecipieItemState extends State<RecipieItem> {
                     Row(
                       children: List.generate(5, (index) => Icon(
                         Icons.star,
-                        color: index <= widget.reviewStar! ?Colors.green:Colors.green.shade100,
+                        color: index <= widget.reviewStar ?Colors.green:Colors.green.shade100,
                         size: 20,
                       ),),
                     ),
@@ -76,44 +79,15 @@ class _RecipieItemState extends State<RecipieItem> {
                   height: 200,
                   child: PageView(
                     scrollDirection: Axis.vertical,
-                    children: [
-                      ClipRRect(
-                        borderRadius: BorderRadius.only(
-                            bottomRight: Radius.circular(15),
-                            bottomLeft: Radius.circular(15)),
-                        child: Image.asset(
-                          widget.imgePath,
-                          fit: BoxFit.cover,
-                        ),
+                    children: List.generate(4, (index) => ClipRRect(
+                      borderRadius: BorderRadius.only(
+                          bottomRight: Radius.circular(15),
+                          bottomLeft: Radius.circular(15)),
+                      child: Image.asset(
+                        widget.imgePath[index],
+                        fit: BoxFit.cover,
                       ),
-                      ClipRRect(
-                        borderRadius: BorderRadius.only(
-                            bottomRight: Radius.circular(15),
-                            bottomLeft: Radius.circular(15)),
-                        child: Image.asset(
-                          widget.imgePath,
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                      ClipRRect(
-                        borderRadius: BorderRadius.only(
-                            bottomRight: Radius.circular(15),
-                            bottomLeft: Radius.circular(15)),
-                        child: Image.asset(
-                          widget.imgePath,
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                      ClipRRect(
-                        borderRadius: BorderRadius.only(
-                            bottomRight: Radius.circular(15),
-                            bottomLeft: Radius.circular(15)),
-                        child: Image.asset(
-                          widget.imgePath,
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                    ],
+                    ),),
                     controller: widget.pageController,
                   ),
                 ),
@@ -123,7 +97,7 @@ class _RecipieItemState extends State<RecipieItem> {
                 top: 20,
                 child: SmoothPageIndicator(
                     axisDirection: Axis.vertical,
-                    controller: widget.pageController!,
+                    controller: widget.pageController,
                     // PageController
                     count: 4,
                     effect: WormEffect(
@@ -133,7 +107,7 @@ class _RecipieItemState extends State<RecipieItem> {
                         dotWidth: 10),
                     // your preferred effect
                     onDotClicked: (index) {
-                      widget.pageController!.jumpToPage(index);
+                      widget.pageController.jumpToPage(index);
                     }),
               ),
               Positioned(
@@ -141,7 +115,7 @@ class _RecipieItemState extends State<RecipieItem> {
                   bottom: -20,
                   child: InkWell(
                     onTap: (){
-                      Navigator.push(context, MaterialPageRoute(builder: (context)=>DetailsScreen()));
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=>DetailsScreen(index: widget.index,)));
                     },
                     child: Container(
                         margin: EdgeInsets.symmetric(horizontal: 130),
