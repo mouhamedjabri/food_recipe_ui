@@ -6,12 +6,12 @@ import '../screens/details_screen.dart';
 
 
 class RecipieItem extends StatefulWidget {
-  RecipieItem({Key? key,required this.titel,required this.review,required this.pageController,required this.imgePath,required this.reviewStar,required this.index}) : super(key: key);
+  RecipieItem({Key? key,required this.titel,required this.review,required this.pageController,required this.imgePath,required this.meals}) : super(key: key);
   PageController pageController;
-  String titel,review;
-  List<String> imgePath;
-  int reviewStar;
-  int index;
+  String titel;
+  int review;
+  String imgePath;
+  Meals meals;
 
   @override
   State<RecipieItem> createState() => _RecipieItemState();
@@ -49,7 +49,7 @@ class _RecipieItemState extends State<RecipieItem> {
                 Row(
                   children: [
                     Text(
-                      widget.review,
+                      widget.review.toString(),
                       style: TextStyle(
                           fontWeight: FontWeight.w400,
                           fontSize: 18,
@@ -61,7 +61,7 @@ class _RecipieItemState extends State<RecipieItem> {
                     Row(
                       children: List.generate(5, (index) => Icon(
                         Icons.star,
-                        color: index <= widget.reviewStar ?Colors.green:Colors.green.shade100,
+                        color: index <= widget.review-1 ?Colors.green:Colors.green.shade100,
                         size: 20,
                       ),),
                     ),
@@ -72,53 +72,63 @@ class _RecipieItemState extends State<RecipieItem> {
           ),
           Stack(
             clipBehavior: Clip.none,
+            alignment: Alignment.center,
             children: [
               InkWell(
                 onTap: (){},
                 child: Container(
                   height: 200,
-                  child: PageView(
-                    scrollDirection: Axis.vertical,
-                    children: List.generate(4, (index) => ClipRRect(
-                      borderRadius: BorderRadius.only(
-                          bottomRight: Radius.circular(15),
-                          bottomLeft: Radius.circular(15)),
-                      child: Image.asset(
-                        widget.imgePath[index],
-                        fit: BoxFit.cover,
-                      ),
-                    ),),
-                    controller: widget.pageController,
-                  ),
+                  width: MediaQuery.of(context).size.width,
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.only(
+                        bottomRight: Radius.circular(15),
+                        bottomLeft: Radius.circular(15)),
+                    child: Image.network(
+                      widget.imgePath,
+                      fit: BoxFit.cover,
+                    ),
+                  )
+                  // PageView(
+                  //   scrollDirection: Axis.vertical,
+                  //   children:
+                  //   List.generate(4, (index) => ClipRRect(
+                  //     borderRadius: BorderRadius.only(
+                  //         bottomRight: Radius.circular(15),
+                  //         bottomLeft: Radius.circular(15)),
+                  //     child: Image.network(
+                  //       widget.imgePath,
+                  //       fit: BoxFit.cover,
+                  //     ),
+                  //   ),),
+                  //   controller: widget.pageController,
+                  // ),
                 ),
               ),
+              // Positioned(
+              //   right: 10,
+              //   top: 20,
+              //   child: SmoothPageIndicator(
+              //       axisDirection: Axis.vertical,
+              //       controller: widget.pageController,
+              //       // PageController
+              //       count: 4,
+              //       effect: WormEffect(
+              //           dotColor: Colors.grey,
+              //           activeDotColor: Colors.black,
+              //           dotHeight: 10,
+              //           dotWidth: 10),
+              //       // your preferred effect
+              //       onDotClicked: (index) {
+              //         widget.pageController.jumpToPage(index);
+              //       }),
+              // ),
               Positioned(
-                right: 10,
-                top: 20,
-                child: SmoothPageIndicator(
-                    axisDirection: Axis.vertical,
-                    controller: widget.pageController,
-                    // PageController
-                    count: 4,
-                    effect: WormEffect(
-                        dotColor: Colors.grey,
-                        activeDotColor: Colors.black,
-                        dotHeight: 10,
-                        dotWidth: 10),
-                    // your preferred effect
-                    onDotClicked: (index) {
-                      widget.pageController.jumpToPage(index);
-                    }),
-              ),
-              Positioned(
-
                   bottom: -20,
                   child: InkWell(
                     onTap: (){
-                      Navigator.push(context, MaterialPageRoute(builder: (context)=>DetailsScreen(index: widget.index,)));
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=>DetailsScreen(meals: widget.meals,review: widget.review-1,)));
                     },
                     child: Container(
-                        margin: EdgeInsets.symmetric(horizontal: 130),
                         padding: EdgeInsets.symmetric(horizontal: 20,vertical: 10),
                         decoration: BoxDecoration(
                             boxShadow: [
