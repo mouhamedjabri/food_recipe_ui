@@ -1,6 +1,6 @@
 On our food_recipe_ui app has two pages one for the HomePage page which has a vertical list of recipe. Then on the details page, it shows the INGREDIENTS.
 
-food_recipe_ui app is a design implementaion of [Recipes App](https://dribbble.com/shots/4389218-Recipes-App/attachments/998775 designed by [Pavlos Aliko](https://dribbble.com/pavlosaliko)
+food_recipe_ui app is a design implementaion of [Recipes App](https://dribbble.com/shots/4389218-Recipes-App/attachments/998775) designed by [Pavlos Aliko](https://dribbble.com/pavlosaliko)
 
 
 ## Android Screenshots
