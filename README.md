@@ -1,16 +1,10 @@
-# food_recip_ui_flutter
+On our food_recipe_ui app has two pages one for the HomePage page which has a vertical list of recipe. Then on the details page, it shows the INGREDIENTS.
 
-A new Flutter project.
+food_recipe_ui app is a design implementaion of [Recipes App](https://dribbble.com/shots/4389218-Recipes-App/attachments/998775 designed by [Pavlos Aliko](https://dribbble.com/pavlosaliko)
 
-## Getting Started
 
-This project is a starting point for a Flutter application.
+## Android Screenshots
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+  HomePage                 |   Detail Page        |
+:-------------------------:|:--------------------:|
+![](https://github.com/mouhamedjabri/food_recipe_ui/blob/4970001b342d654eca4266e8c5a9fdb1265303ca/assets/screen_shot/Screenshot_20220926_123049.png)|![](https://github.com/mouhamedjabri/food_recipe_ui/blob/4970001b342d654eca4266e8c5a9fdb1265303ca/assets/screen_shot/Screenshot_20220926_123123.png)|
